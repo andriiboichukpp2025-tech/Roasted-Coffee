@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --color-ink: #2b1e19;
+  --color-brown: #704b38;
+  --color-accent: #bc5b38;
+  --color-surface: #faf9f6;
+  --color-sand: #e7ded5;
+}
+
+html { scroll-behavior: smooth; }
+[hidden] { display: none !important; }
+
+.main-nav a.active,
+.main-nav a:hover { color: var(--color-accent); }
+
+.main-nav.open {
+  position: absolute;
+  z-index: 20;
+  top: 4rem;
+  right: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin: 0;
+  padding: 22px 20px;
+  background: var(--color-surface);
+  box-shadow: 0 12px 20px rgb(43 30 25 / 12%);
+}
+
+.choice.active {
+  background: var(--color-ink);
+  color: #fff;
+}
+
+.option.selected { border: 2px solid var(--color-accent); }
+.favorite-button.is-favorite { font-weight: 700; }
+.is-disabled { opacity: .45; }
+
+.stepper li.active,
+.stepper span.active {
+  background: var(--color-ink);
+  color: #fff;
+}
+
+.stepper li[data-complete] {
+  background: var(--color-brown);
+  color: #fff;
+}
+
+.stepper li[data-complete]::after {
+  content: ' ✓';
+  color: #fff;
+}
+
+.hero-wash {
+  background: linear-gradient(90deg, rgb(247 245 241 / 98%), rgb(247 245 241 / 94%) 37%, rgb(247 245 241 / 40%) 70%, rgb(247 245 241 / 5%));
+}
+
+.delivery-option:has(input:checked) { border-color: var(--color-accent); }
+
+@media (max-width: 767px) {
+  .main-nav:not(.open) { display: none; }
+  .hero-wash { background: linear-gradient(90deg, rgb(247 245 241 / 96%), rgb(247 245 241 / 55%)); }
+}
+
+@media (min-width: 768px) {
+  .main-nav.open { position: static; flex-direction: row; gap: 1rem; padding: 0; box-shadow: none; }
+}

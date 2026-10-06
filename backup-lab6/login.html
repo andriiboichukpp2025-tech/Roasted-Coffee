@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <title>Sign In | Roasted Coffee</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { colors: {ink: '#2b1e19', brown: '#704b38', muted: '#806957', accent: '#bc5b38', paper: '#f8f6f2', surface: '#faf9f6', sand: '#e7ded5', cream: '#faf8f5', 'coffee-art': '#eadfd3', hero: '#e9e5df', footer: '#f0ebe5', 'footer-ink': '#5f4b3f', 'footer-line': '#bcaea4', 'muted-ink': '#6b5147', 'pale-ink': '#d6c7bd', soft: '#cfc6bd', 'hero-ink': '#60391f', border: '#e5ddd6', 'border-dark': '#d8cec5', success: '#e5f0e6', 'success-text': '#356342'}, fontFamily: { body: ['DM Sans', 'Arial', 'sans-serif'] }, fontSize: { eyebrow: ['11px', { letterSpacing: '.15em' }], copy: '13px', micro: '10px', 'hero-mobile': '43px', 'hero-title': '58px', 'hero-copy': '17px', quote: '28px' }, maxWidth: { content: '1200px', hero: '620px', copy: '520px', auth: '480px' }, minHeight: { 'auth-content': '620px', 'hero-mobile': '760px', hero: '681px' }, spacing: { 'page-gutter': 'max(24px, calc((100vw - 1200px) / 2))', 'quote-gutter': 'max(24px, calc((100vw - 960px) / 2))', 'hero-inset': '8%', 'hero-card': '29rem', badge: '18px' }, boxShadow: { card: '0 15px 35px rgba(76, 49, 28, .1)' } } } };</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="site-shell min-h-screen overflow-x-hidden bg-paper text-ink font-body">
+    <header class="site-header relative z-10 flex h-16 items-center justify-between border-b border-border bg-surface px-4 md:px-4 lg:px-6">
+      <a class="brand flex items-center gap-2.5 whitespace-nowrap text-xl transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="index.html"><img class="brand-logo block h-8 w-8 object-contain" src="assets/images/logo.svg" alt="">Roasted Coffee</a>
+      <a class="muted text-copy leading-relaxed text-muted transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="index.html">Back home</a>
+    </header>
+    <main class="content-wrap auth-layout mx-auto max-w-content px-5 py-16 md:px-8 md:py-20 flex min-h-auth-content justify-center">
+      <form class="form-card auth-card border border-border bg-white p-5 md:p-8 w-full max-w-auth" data-login-form novalidate>
+        <div class="eyebrow text-eyebrow font-bold uppercase text-accent">Your coffee account</div>
+        <h1 class="mb-4 text-4xl font-medium leading-tight tracking-tight md:text-5xl lg:text-6xl">Welcome <span class="text-accent">back.</span></h1>
+        <p class="muted text-copy leading-relaxed text-muted">Sign in to manage favorites, orders, and subscriptions.</p>
+        <div class="field mb-4 flex flex-col gap-2">
+          <label class="text-xs font-bold" for="login-email">Email address</label>
+          <input class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="login-email" name="email" type="email" required autocomplete="email" placeholder="you@example.com">
+          <small class="field-hint text-xs text-muted">Enter a valid email, for example you@example.com.</small>
+        </div>
+        <div class="field mb-4 flex flex-col gap-2">
+          <label class="text-xs font-bold" for="login-password">Password</label>
+          <input class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="login-password" name="password" type="password" minlength="6" required autocomplete="current-password" placeholder="At least 6 characters">
+        </div>
+        <button class="button button-primary inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-transparent px-5 py-3.5 text-sm font-bold transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 bg-accent text-white hover:brightness-95 cursor-pointer" type="submit">Sign in -&gt;</button>
+        <p class="success-message mt-4 bg-success px-3 py-3 text-success-text" data-login-message hidden>Signed in. Opening your account...</p>
+      </form>
+    </main>
+    <footer class="site-footer bg-footer px-5 pb-6 pt-14 md:px-8 lg:px-page-gutter"><div class="footer-bottom mt-12 flex flex-col justify-between gap-2.5 border-t border-border-dark pt-4 text-xs text-muted md:flex-row"><span>&copy; 2024 Roasted Coffee</span><a class="transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="support.html">Need help?</a></div></footer>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>

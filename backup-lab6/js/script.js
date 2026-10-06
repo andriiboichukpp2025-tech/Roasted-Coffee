@@ -21,67 +21,6 @@ const getCart = () => readStorage(storageKeys.cart);
 const getFavorites = () => readStorage(storageKeys.favorites);
 const getReviews = () => readStorage(storageKeys.reviews);
 
-const setupWeatherWidget = async () => {
-  const widget = document.querySelector('[data-weather-widget]');
-  if (!widget) return;
-
-  const status = widget.querySelector('[data-weather-status]');
-  const latitude = Number(widget.dataset.latitude);
-  const longitude = Number(widget.dataset.longitude);
-  const location = widget.dataset.location;
-  if (!status || !Number.isFinite(latitude) || !Number.isFinite(longitude) || !location) {
-    throw new Error('Weather widget is missing valid location data or status element.');
-  }
-
-  const params = new URLSearchParams({
-    latitude: String(latitude),
-    longitude: String(longitude),
-    current: 'temperature_2m,weather_code',
-    temperature_unit: 'celsius',
-  });
-
-  try {
-    const response = await fetch(`https://api.open-meteo.com/v1/forecast?${params}`);
-    if (!response.ok) throw new Error(`Weather request failed with status ${response.status}.`);
-
-    const data = await response.json();
-    const temperature = data.current?.temperature_2m;
-    const weatherCode = data.current?.weather_code;
-    if (!Number.isFinite(temperature) || !Number.isFinite(weatherCode)) {
-      throw new Error('Weather response did not include valid current conditions.');
-    }
-
-    const conditions = new Map([
-      [0, 'Clear sky'],
-      [1, 'Mainly clear'],
-      [2, 'Partly cloudy'],
-      [3, 'Overcast'],
-      [45, 'Fog'],
-      [48, 'Depositing rime fog'],
-      [51, 'Light drizzle'],
-      [53, 'Moderate drizzle'],
-      [55, 'Dense drizzle'],
-      [61, 'Slight rain'],
-      [63, 'Moderate rain'],
-      [65, 'Heavy rain'],
-      [71, 'Slight snow'],
-      [73, 'Moderate snow'],
-      [75, 'Heavy snow'],
-      [80, 'Rain showers'],
-      [81, 'Moderate rain showers'],
-      [82, 'Violent rain showers'],
-      [95, 'Thunderstorm'],
-      [96, 'Thunderstorm with hail'],
-      [99, 'Thunderstorm with heavy hail'],
-    ]);
-
-    status.textContent = `${Math.round(temperature)}°C · ${conditions.get(weatherCode) || 'Current conditions'} in ${location}`;
-  } catch (error) {
-    console.error('Unable to load the weather widget.', error);
-    status.textContent = 'Weather is temporarily unavailable. Please try again later.';
-  }
-};
-
 const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character) => ({
   '&': '&amp;',
   '<': '&lt;',
@@ -504,13 +443,6 @@ document.querySelectorAll('form').forEach((form) => {
   form.addEventListener('submit', (event) => {
     if (form.getAttribute('action')) return;
     event.preventDefault();
-
-    if (form.matches('[data-newsletter-form]')) {
-      const message = form.querySelector('[data-newsletter-message]');
-      if (message) message.hidden = false;
-      return;
-    }
-
     const submitButton = form.querySelector('button[type="submit"]');
     if (submitButton) { submitButton.textContent = 'Sent'; submitButton.disabled = true; }
   });
@@ -560,7 +492,6 @@ updateCartCount();
 updateFavoriteButtons();
 renderFavorites();
 renderCart();
-setupWeatherWidget();
 setupBuilder();
 setupCheckout();
 setupLogin();

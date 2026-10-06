@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+  <meta name="description" content="Roasted Coffee. Personalized, freshly roasted specialty coffee.">
+  <title>Roasted Coffee | Personalized Specialty Coffee</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { colors: {ink: '#2b1e19', brown: '#704b38', muted: '#806957', accent: '#bc5b38', paper: '#f8f6f2', surface: '#faf9f6', sand: '#e7ded5', cream: '#faf8f5', 'coffee-art': '#eadfd3', hero: '#e9e5df', footer: '#f0ebe5', 'footer-ink': '#5f4b3f', 'footer-line': '#bcaea4', 'muted-ink': '#6b5147', 'pale-ink': '#d6c7bd', soft: '#cfc6bd', 'hero-ink': '#60391f', border: '#e5ddd6', 'border-dark': '#d8cec5', success: '#e5f0e6', 'success-text': '#356342'}, fontFamily: { body: ['DM Sans', 'Arial', 'sans-serif'] }, fontSize: { eyebrow: ['11px', { letterSpacing: '.15em' }], copy: '13px', micro: '10px', 'hero-mobile': '43px', 'hero-title': '58px', 'hero-copy': '17px', quote: '28px' }, maxWidth: { content: '1200px', hero: '620px', copy: '520px', auth: '480px' }, minHeight: { 'auth-content': '620px', 'hero-mobile': '760px', hero: '681px' }, spacing: { 'page-gutter': 'max(24px, calc((100vw - 1200px) / 2))', 'quote-gutter': 'max(24px, calc((100vw - 960px) / 2))', 'hero-inset': '8%', 'hero-card': '29rem', badge: '18px' }, boxShadow: { card: '0 15px 35px rgba(76, 49, 28, .1)' } } } };</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="site-shell min-h-screen overflow-x-hidden bg-paper text-ink font-body">
+    <header class="site-header relative z-10 flex h-16 items-center justify-between border-b border-border bg-surface px-4 md:px-4 lg:px-6">
+      <a class="brand flex items-center gap-2.5 whitespace-nowrap text-xl transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="index.html">
+        <img class="brand-logo block h-8 w-8 object-contain" src="assets/images/logo.svg" alt="">
+        Roasted Coffee
+      </a>
+      <nav id="primary-navigation" aria-label="Primary navigation" class="main-nav hidden items-center gap-2 md:flex lg:ml-8 lg:gap-3 xl:ml-16 xl:gap-8">
+        <a class="text-xs font-semibold active transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="index.html">Home</a>
+        <a class="text-xs font-semibold transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="catalog.html">Catalog</a>
+        <a class="text-xs font-semibold transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="build-blend.html">Build Your Blend</a>
+        <a class="text-xs font-semibold transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="taste-quiz.html">Taste Quiz</a>
+        <a class="text-xs font-semibold transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="about.html">About</a>
+      <form role="search" action="catalog.html" class="flex min-h-11 min-w-0 items-center gap-2 border-b border-border md:ml-1 md:max-w-32 md:border-0 lg:max-w-52"><label class="sr-only" for="site-search">Search coffee</label><input id="site-search" type="search" name="q" placeholder="Search coffee" class="min-h-11 min-w-0 flex-1 rounded-sm border border-border-dark bg-white px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"><button class="min-h-11 px-3 font-bold text-accent transition hover:text-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer" type="submit" aria-label="Search">Search</button></form><div class="flex flex-wrap items-center gap-2 border-t border-border pt-3 md:hidden"><a class="text-xs font-semibold button button-outline button-small min-h-11 inline-flex items-center justify-center rounded-sm border border-ink px-4 py-2.5 text-sm font-bold transition hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="login.html">Sign In</a><a class="text-xs font-semibold button button-primary button-small min-h-11 inline-flex items-center justify-center rounded-sm bg-accent px-4 py-2.5 text-sm font-bold text-white transition hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="build-blend.html">Get Started</a><a class="text-xs font-semibold cart-link relative ml-1 text-sm transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="checkout.html">Cart <b class="cart-count absolute -right-4 -top-2 inline-flex h-badge w-badge items-center justify-center rounded-full bg-accent text-micro text-white">0</b></a></div></nav>
+      <div class="header-actions hidden items-center gap-2 md:flex">
+        <a class="button button-outline button-small inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border text-sm font-bold transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 border-ink bg-transparent text-ink hover:bg-ink hover:text-white px-4 py-2.5" href="login.html">Sign In</a>
+        <a class="button button-primary button-small inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-transparent text-sm font-bold transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 bg-accent text-white hover:brightness-95 px-4 py-2.5" href="build-blend.html">Get Started</a>
+        <a class="cart-link relative ml-1 text-sm transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="checkout.html" aria-label="Open cart">
+          Cart <b class="cart-count absolute -right-4 -top-2 inline-flex h-badge w-badge items-center justify-center rounded-full bg-accent text-micro text-white">2</b>
+        </a>
+      </div>
+      <button class="menu-toggle min-h-11 rounded-sm border border-border px-3 text-sm font-semibold transition hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden cursor-pointer" type="button" aria-label="Open menu" aria-controls="primary-navigation" aria-expanded="false">Menu</button>
+    </header>
+
+    <main>
+      <section class="hero-home relative min-h-hero-mobile md:min-h-hero overflow-hidden bg-hero">
+        <video class="hero-video absolute inset-0 h-full w-full object-cover" autoplay muted loop playsinline aria-hidden="true">
+          <source src="assets/background.mp4" type="video/mp4">
+        </video>
+        <div class="hero-wash absolute inset-0">
+</div>
+        <div class="hero-content relative z-10 max-w-hero px-5 py-14 md:px-6 md:py-20 lg:pl-[max(24px,calc((100vw-1200px)/2))]">
+          <div class="pill-label mb-7 flex max-w-xl items-center gap-2 rounded-full bg-ink px-4 py-2.5 text-xs font-bold uppercase tracking-widest text-white">
+<i class="h-2 w-2 shrink-0 rounded-full bg-accent">
+</i> Freshly roasted to order</div>
+          <h1 class="mb-4 text-4xl font-medium leading-tight tracking-tight text-hero-mobile md:text-hero-title">Personalized<br>Freshly Roasted<br>
+<span class="text-accent">Specialty Coffee</span>
+</h1>
+          <p class="mb-4 max-w-copy text-base leading-relaxed text-hero-ink md:text-hero-copy">Craft your perfect cup from origin to cup. Choose your beans, roast level, grind type, and weight. We roast your unique blend the moment you order and ship it fresh to your door.</p>
+          <div class="hero-buttons mb-9 flex flex-col gap-3.5 sm:flex-row">
+            <a class="button button-primary inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-transparent px-5 py-3.5 text-sm font-bold transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 bg-accent text-white hover:brightness-95" href="build-blend.html">+ &nbsp;Create Your Mix</a>
+            <a class="button button-outline inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border px-5 py-3.5 text-sm font-bold transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 border-ink bg-transparent text-ink hover:bg-ink hover:text-white" href="taste-quiz.html">? &nbsp; Take Taste Quiz</a>
+          </div>
+          <div class="hero-proof flex flex-wrap items-center gap-2 text-xs text-brown">
+            <div class="proof-avatars flex">
+<b>A</b>
+<b>B</b>
+<b>C</b>
+</div>
+            <span>12,400+ blends created</span>
+            <em class="hidden h-6 border-l border-soft md:mx-3.5 md:block">
+</em>
+            <span class="stars tracking-widest text-accent">*</span>
+            <span>4.9/5 from 2,800+ reviews</span>
+          </div>
+        </div>
+        <div class="hero-product-card absolute bottom-6 left-5 right-5 z-10 flex items-center justify-between rounded-lg bg-white p-4 shadow-xl md:bottom-24 md:left-auto md:right-hero-inset md:min-w-hero-card">
+          <div>
+            <small class="mb-1.5 block text-micro font-bold tracking-widest text-accent">JUST ROASTED</small>
+            <strong class="block text-copy">Ethiopian Arabica &middot; Medium</strong>
+            <span class="mt-1.5 block text-xs text-brown">Roasted 2 hours ago &middot; 500g</span>
+          </div>
+          <div class="price text-right text-lg font-bold">$26.99<small class="mt-1.5 block text-xs tracking-wider text-accent">*****</small>
+</div>
+        </div>
+      </section>
+
+      <section class="trust-strip grid grid-cols-2 bg-ink text-white md:flex md:justify-center">
+        <div class="flex min-w-0 flex-col gap-1.5 border-r border-muted-ink last:border-0 p-4 md:min-w-52 md:px-8 md:py-6">
+<strong class="text-lg md:text-xl">12,400+</strong>
+<span class="text-xs text-pale-ink">custom blends created</span>
+</div>
+        <div class="flex min-w-0 flex-col gap-1.5 border-r border-muted-ink last:border-0 p-4 md:min-w-52 md:px-8 md:py-6">
+<strong class="text-lg md:text-xl">48 hrs</strong>
+<span class="text-xs text-pale-ink">from roast to doorstep</span>
+</div>
+        <div class="flex min-w-0 flex-col gap-1.5 border-r border-muted-ink last:border-0 p-4 md:min-w-52 md:px-8 md:py-6">
+<strong class="text-lg md:text-xl">100%</strong>
+<span class="text-xs text-pale-ink">traceable origins</span>
+</div>
+        <div class="flex min-w-0 flex-col gap-1.5 border-r border-muted-ink last:border-0 p-4 md:min-w-52 md:px-8 md:py-6">
+<strong class="text-lg md:text-xl">4.9/5</strong>
+<span class="text-xs text-pale-ink">customer rating</span>
+</div>
+      </section>
+
+      <section class="section section-soft px-5 py-16 md:px-8 md:py-20 lg:px-page-gutter lg:py-24 bg-paper">
+        <div class="section-heading max-w-xl">
+          <div class="eyebrow text-eyebrow font-bold uppercase text-accent">Why roasted coffee</div>
+          <h2 class="my-4 text-3xl font-medium leading-tight tracking-tight md:text-4xl">Your coffee,<br>
+<span class="text-accent">your way.</span>
+</h2>
+          <p class="leading-relaxed text-brown">Every detail matters. We give you the tools to create a coffee experience that is completely yours.</p>
+        </div>
+        <div class="feature-grid mt-10 grid grid-cols-1 gap-6 md:mt-14 md:grid-cols-3">
+          <article class="border-t border-border-dark px-2 py-4">
+<b class="text-xs text-accent">01</b>
+<h3 class="my-3 text-xl font-semibold">Choose your origin</h3>
+<p class="mb-4 max-w-xl leading-relaxed text-brown text-muted">Explore distinctive beans from Ethiopia, Brazil, Colombia, Sumatra, and beyond.</p>
+</article>
+          <article class="border-t border-border-dark px-2 py-4">
+<b class="text-xs text-accent">02</b>
+<h3 class="my-3 text-xl font-semibold">Dial in your roast</h3>
+<p class="mb-4 max-w-xl leading-relaxed text-brown text-muted">From bright and floral light roasts to rich, bold dark roasts.</p>
+</article>
+          <article class="border-t border-border-dark px-2 py-4">
+<b class="text-xs text-accent">03</b>
+<h3 class="my-3 text-xl font-semibold">Make it yours</h3>
+<p class="mb-4 max-w-xl leading-relaxed text-brown text-muted">Select your grind, weight, and delivery rhythm. We handle the rest.</p>
+</article>
+        </div>
+      </section>
+
+      <section class="section process-preview px-5 py-16 md:px-8 md:py-20 lg:px-page-gutter lg:py-24 grid grid-cols-1 gap-9 bg-sand md:gap-12 lg:grid-cols-[.8fr_1.2fr]">
+        <div class="section-heading max-w-xl">
+          <div class="eyebrow text-eyebrow font-bold uppercase text-accent">Live process</div>
+          <h2 class="my-4 text-3xl font-medium leading-tight tracking-tight md:text-4xl">Built around<br>
+<span class="text-accent">your ritual.</span>
+</h2>
+          <a class="arrow-link mt-6 inline-block border-b border-accent pb-2 font-bold text-accent transition hover:text-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="build-blend.html">Start building your blend -&gt;</a>
+        </div>
+        <div class="process-card bg-surface p-5 shadow-card md:p-7">
+          <div class="process-card-top flex items-center justify-between border-b border-border py-4 pt-0">
+<span>Your blend</span>
+<b>STEP 1 OF 6</b>
+</div>
+          <div class="choice-row flex flex-wrap items-center gap-3 border-b border-border py-4">
+<span class="flex-1 font-semibold">Bean type</span>
+<button class="choice active min-h-11 rounded-sm border border-border-dark bg-white px-4 py-2.5 text-brown transition hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer" type="button">Arabica</button>
+<button class="choice min-h-11 rounded-sm border border-border-dark bg-white px-4 py-2.5 text-brown transition hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer" type="button">Robusta</button>
+</div>
+          <div class="choice-row flex flex-wrap items-center gap-3 border-b border-border py-4">
+<span class="flex-1 font-semibold">Flavor profile</span>
+<button class="choice active min-h-11 rounded-sm border border-border-dark bg-white px-4 py-2.5 text-brown transition hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer" type="button">Chocolatey</button>
+<button class="choice min-h-11 rounded-sm border border-border-dark bg-white px-4 py-2.5 text-brown transition hover:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer" type="button">Fruity</button>
+</div>
+          <div class="range-row flex items-center gap-3 border-b border-border py-4">
+<span class="flex-1 font-semibold">Roast level</span>
+<input class="w-1/2 accent-accent" type="range" value="52" aria-label="Roast level">
+</div>
+          <div class="process-total flex items-center justify-between py-4">
+<span>Starting at <strong>$18.00</strong>
+</span>
+            <a class="button button-primary inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-transparent px-5 py-3.5 text-sm font-bold transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 bg-accent text-white hover:brightness-95" href="build-blend.html">Continue -&gt;</a>
+</div>
+        </div>
+      </section>
+
+      <section class="quote-section grid grid-cols-[45px_minmax(0,1fr)] gap-6 bg-ink px-5 py-16 text-white md:grid-cols-[130px_minmax(0,1fr)] md:px-8 md:py-24 lg:px-quote-gutter">
+        <div class="quote-symbol text-7xl leading-none text-accent md:text-9xl">&quot;</div>
+        <div>
+<div class="stars tracking-widest text-accent">*****</div>
+<blockquote class="my-5 max-w-3xl text-2xl leading-relaxed md:text-quote">It is rare to find coffee this fresh and this personal. My morning ritual has never tasted better.</blockquote>
+<p class="leading-relaxed text-brown">- Maya R. &middot; Verified customer</p>
+</div>
+      </section>
+
+      <section class="cta-band flex flex-col items-start justify-between gap-8 px-5 py-16 md:px-8 md:py-20 lg:flex-row lg:items-center lg:px-page-gutter">
+        <div>
+<div class="eyebrow text-eyebrow font-bold uppercase text-accent">Find your perfect cup</div>
+<h2 class="my-4 text-3xl font-medium leading-tight tracking-tight md:text-4xl">Not sure where to start?</h2>
+<p class="mb-4 max-w-xl leading-relaxed text-brown">Take our two-minute taste quiz and we will match you with your ideal blend.</p>
+</div>
+        <a class="button button-primary inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-transparent px-5 py-3.5 text-sm font-bold transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 bg-accent text-white hover:brightness-95" href="taste-quiz.html">Take the taste quiz -&gt;</a>
+      </section>
+    </main>
+
+    <footer class="site-footer bg-footer px-5 pb-6 pt-14 md:px-8 lg:px-page-gutter">
+      <div class="footer-top grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <a class="brand flex items-center gap-2.5 whitespace-nowrap text-xl transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="index.html">
+  <img class="brand-logo block h-8 w-8 object-contain" src="assets/images/logo.svg" alt="">Roasted Coffee</a>
+        <div class="flex flex-col gap-3">
+<b class="mb-1.5 text-xs">Explore</b>
+<a class="transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="catalog.html">Catalog</a>
+<a class="transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="build-blend.html">Build a blend</a>
+<a class="transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="taste-quiz.html">Taste quiz</a>
+</div>
+        <div class="flex flex-col gap-3">
+<b class="mb-1.5 text-xs">Company</b>
+<a class="transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="about.html">About us</a>
+<a class="transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="support.html">Contact & support</a>
+<a class="transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="login.html">Your account</a>
+</div>
+        <div class="flex flex-col gap-3">
+<b class="mb-1.5 text-xs">Stay in the loop</b>
+<p class="mb-4 max-w-xl leading-relaxed text-brown">Fresh drops, brewing tips, and 10% off your first order.</p>
+<form class="mini-form mt-1 flex">
+<input class="min-w-0 flex-1 border-0 border-b border-footer-line bg-transparent px-0 py-2.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" type="email" name="email" autocomplete="email" aria-label="Your email" placeholder="Your email" required>
+<button class="min-h-11 min-w-11 border-0 bg-ink px-4 text-white transition hover:bg-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" type="submit" aria-label="Subscribe">-&gt;</button>
+</form>
+</div>
+      </div>
+      <div class="footer-bottom mt-12 flex flex-col justify-between gap-2.5 border-t border-border-dark pt-4 text-xs text-muted md:flex-row">
+<span>&copy; 2024 Roasted Coffee</span>
+<span>Made for better mornings.</span>
+</div>
+    </footer>
+  </div>
+  <script src="js/script.js">
+</script>
+</body>
+</html>

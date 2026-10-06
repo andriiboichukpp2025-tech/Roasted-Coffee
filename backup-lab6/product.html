@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="assets/images/logo.svg" type="image/svg+xml">
+<title>Golden Hour | Roasted Coffee</title>
+<script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { colors: {ink: '#2b1e19', brown: '#704b38', muted: '#806957', accent: '#bc5b38', paper: '#f8f6f2', surface: '#faf9f6', sand: '#e7ded5', cream: '#faf8f5', 'coffee-art': '#eadfd3', hero: '#e9e5df', footer: '#f0ebe5', 'footer-ink': '#5f4b3f', 'footer-line': '#bcaea4', 'muted-ink': '#6b5147', 'pale-ink': '#d6c7bd', soft: '#cfc6bd', 'hero-ink': '#60391f', border: '#e5ddd6', 'border-dark': '#d8cec5', success: '#e5f0e6', 'success-text': '#356342'}, fontFamily: { body: ['DM Sans', 'Arial', 'sans-serif'] }, fontSize: { eyebrow: ['11px', { letterSpacing: '.15em' }], copy: '13px', micro: '10px', 'hero-mobile': '43px', 'hero-title': '58px', 'hero-copy': '17px', quote: '28px' }, maxWidth: { content: '1200px', hero: '620px', copy: '520px', auth: '480px' }, minHeight: { 'auth-content': '620px', 'hero-mobile': '760px', hero: '681px' }, spacing: { 'page-gutter': 'max(24px, calc((100vw - 1200px) / 2))', 'quote-gutter': 'max(24px, calc((100vw - 960px) / 2))', 'hero-inset': '8%', 'hero-card': '29rem', badge: '18px' }, boxShadow: { card: '0 15px 35px rgba(76, 49, 28, .1)' } } } };</script>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="site-shell min-h-screen overflow-x-hidden bg-paper text-ink font-body">
+<header class="site-header relative z-10 flex h-16 items-center justify-between border-b border-border bg-surface px-4 md:px-4 lg:px-6">
+<a class="brand flex items-center gap-2.5 whitespace-nowrap text-xl transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="index.html">
+<img class="brand-logo block h-8 w-8 object-contain" src="assets/images/logo.svg" alt="">Roasted Coffee</a>
+<nav id="primary-navigation" aria-label="Primary navigation" class="main-nav hidden items-center gap-2 md:flex lg:ml-8 lg:gap-3 xl:ml-16 xl:gap-8">
+<a class="text-xs font-semibold transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="index.html">Home</a>
+<a class="text-xs font-semibold active transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="catalog.html">Catalog</a>
+<a class="text-xs font-semibold transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="build-blend.html">Build Your Blend</a>
+<a class="text-xs font-semibold transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="taste-quiz.html">Taste Quiz</a>
+<a class="text-xs font-semibold transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="about.html">About</a>
+<form role="search" action="catalog.html" class="flex min-h-11 min-w-0 items-center gap-2 border-b border-border md:ml-1 md:max-w-32 md:border-0 lg:max-w-52"><label class="sr-only" for="site-search">Search coffee</label><input id="site-search" type="search" name="q" placeholder="Search coffee" class="min-h-11 min-w-0 flex-1 rounded-sm border border-border-dark bg-white px-3 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"><button class="min-h-11 px-3 font-bold text-accent transition hover:text-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer" type="submit" aria-label="Search">Search</button></form><div class="flex flex-wrap items-center gap-2 border-t border-border pt-3 md:hidden"><a class="text-xs font-semibold button button-outline button-small min-h-11 inline-flex items-center justify-center rounded-sm border border-ink px-4 py-2.5 text-sm font-bold transition hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="login.html">Sign In</a><a class="text-xs font-semibold button button-primary button-small min-h-11 inline-flex items-center justify-center rounded-sm bg-accent px-4 py-2.5 text-sm font-bold text-white transition hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="build-blend.html">Get Started</a><a class="text-xs font-semibold cart-link relative ml-1 text-sm transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="checkout.html">Cart <b class="cart-count absolute -right-4 -top-2 inline-flex h-badge w-badge items-center justify-center rounded-full bg-accent text-micro text-white">0</b></a></div></nav>
+<div class="header-actions hidden items-center gap-2 md:flex">
+<a class="button button-outline button-small inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border text-sm font-bold transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 border-ink bg-transparent text-ink hover:bg-ink hover:text-white px-4 py-2.5" href="login.html">Sign In</a>
+<a class="cart-link relative ml-1 text-sm transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="checkout.html">Cart <b class="cart-count absolute -right-4 -top-2 inline-flex h-badge w-badge items-center justify-center rounded-full bg-accent text-micro text-white">2</b>
+</a>
+<a class="button button-primary button-small min-h-11 inline-flex items-center justify-center rounded-sm bg-accent px-4 py-2.5 text-sm font-bold text-white transition hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="build-blend.html">Get Started</a></div>
+<button class="menu-toggle min-h-11 rounded-sm border border-border px-3 text-sm font-semibold transition hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent md:hidden cursor-pointer" type="button" aria-label="Open menu" aria-controls="primary-navigation" aria-expanded="false">Menu</button>
+</header>
+<main class="content-wrap split-layout mx-auto max-w-content px-5 py-16 md:px-8 md:py-20 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
+<div>
+<div class="product-art -mx-6 -mt-6 mb-5 flex h-[440px] items-center justify-center bg-coffee-art text-4xl text-accent">Coffee</div>
+<div class="card-grid grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<div class="info-card border border-border bg-white p-6">
+<b>Altitude</b>
+<p class="muted text-copy leading-relaxed text-muted">1,200-1,800 MASL</p>
+</div>
+<div class="info-card border border-border bg-white p-6">
+<b>Process</b>
+<p class="muted text-copy leading-relaxed text-muted">Washed & sun-dried</p>
+</div>
+<div class="info-card border border-border bg-white p-6">
+<b>Profile</b>
+<p class="muted text-copy leading-relaxed text-muted">Caramel, almond, cocoa</p>
+</div>
+</div>
+</div>
+<div>
+<div class="product-card-top flex items-center justify-between"><div class="eyebrow text-eyebrow font-bold uppercase text-accent">House favorite</div><button class="favorite-button min-h-11 px-2 text-xs text-accent transition hover:text-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent cursor-pointer" type="button" data-favorite="golden-hour" aria-pressed="false">♡ Save</button></div>
+<h1 class="mb-4 text-4xl font-medium leading-tight tracking-tight md:text-5xl lg:text-6xl">Golden Hour</h1>
+<p class="muted text-copy leading-relaxed text-muted">A warm, balanced everyday coffee designed to make your morning feel a little more considered.</p>
+<h2 class="my-4 text-3xl font-medium leading-tight tracking-tight md:text-4xl">$18.00</h2>
+<div class="field mb-4 flex flex-col gap-2">
+<label class="text-xs font-bold" for="product-weight">Weight</label>
+<select class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="product-weight" name="weight">
+<option value="250g">250g - $18.00</option>
+<option value="500g">500g - $32.00</option>
+<option value="1kg">1kg - $55.00</option>
+</select>
+</div>
+<div class="field mb-4 flex flex-col gap-2">
+<label class="text-xs font-bold" for="product-grind">Grind</label>
+<select class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="product-grind" name="grind">
+<option>Whole bean</option>
+<option>Medium</option>
+<option>Espresso fine</option>
+</select>
+</div>
+<button class="button button-primary inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-transparent px-5 py-3.5 text-sm font-bold transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 bg-accent text-white hover:brightness-95 cursor-pointer" type="button" data-add-cart="golden-hour" data-name="Golden Hour" data-price="18" data-meta="House blend · Medium roast · 250g" data-art="Coffee">Add to cart -&gt;</button>
+<h3 class="my-3 text-xl font-semibold">Brew recommendation</h3>
+<p class="muted text-copy leading-relaxed text-muted">Use 18g coffee to 300g water at 94 degrees C. Enjoy as pour over or French press.</p>
+</div>
+</main>
+<section class="section section-soft px-5 py-16 md:px-8 md:py-20 lg:px-page-gutter lg:py-24 bg-paper">
+<div class="section-heading max-w-xl">
+<div class="eyebrow text-eyebrow font-bold uppercase text-accent">Loved by our community</div>
+<h2 class="my-4 text-3xl font-medium leading-tight tracking-tight md:text-4xl">&quot;My new <span class="text-accent">daily ritual.</span>&quot;</h2>
+<p class="leading-relaxed text-brown">Freshly roasted, easy to brew, and never bitter. Golden Hour is the blend we send to friends first.</p>
+</div>
+</section>
+<section class="section reviews-section px-5 py-16 md:px-8 md:py-20 lg:px-page-gutter lg:py-24">
+<div class="reviews-layout grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_380px]">
+<div>
+<div class="eyebrow text-eyebrow font-bold uppercase text-accent">Community notes</div>
+<h2 class="my-4 text-3xl font-medium leading-tight tracking-tight md:text-4xl">What people say about <span class="text-accent">Golden Hour.</span></h2>
+<div class="review-list mt-8 grid gap-3" data-review-list></div>
+</div>
+<form class="form-card review-form border border-border bg-white p-5 md:p-8 h-max max-w-none" data-review-form>
+<h3 class="my-3 text-xl font-semibold">Leave a review</h3>
+<div class="field mb-4 flex flex-col gap-2"><label class="text-xs font-bold" for="review-name">Your name</label><input class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="review-name" name="name" required></div>
+<div class="field mb-4 flex flex-col gap-2"><label class="text-xs font-bold" for="review-rating">Rating</label><select class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="review-rating" name="rating" required><option value="5">5 - Excellent</option><option value="4">4 - Great</option><option value="3">3 - Good</option><option value="2">2 - Fair</option><option value="1">1 - Needs work</option></select></div>
+<div class="field mb-4 flex flex-col gap-2"><label class="text-xs font-bold" for="review-comment">Comment</label><textarea class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="review-comment" name="comment" required minlength="10" placeholder="Tell us about your cup..."></textarea></div>
+<button class="button button-primary inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-transparent px-5 py-3.5 text-sm font-bold transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 bg-accent text-white hover:brightness-95 cursor-pointer" type="submit">Publish review -&gt;</button>
+</form>
+</div>
+</section>
+<footer class="site-footer bg-footer px-5 pb-6 pt-14 md:px-8 lg:px-page-gutter">
+<div class="footer-bottom mt-12 flex flex-col justify-between gap-2.5 border-t border-border-dark pt-4 text-xs text-muted md:flex-row">
+<span>&copy; 2024 Roasted Coffee</span>
+<a class="transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" href="catalog.html">Back to catalog</a>
+</div>
+</footer>
+</div>
+<script src="js/script.js">
+</script>
+</body>
+</html>

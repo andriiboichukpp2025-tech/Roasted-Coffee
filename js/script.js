@@ -502,6 +502,7 @@ document.querySelector('[name="delivery"]')?.closest('form')?.addEventListener('
 
 document.querySelectorAll('form').forEach((form) => {
   form.addEventListener('submit', (event) => {
+    if (form.hasAttribute('data-custom-validation')) return;
     if (form.getAttribute('action')) return;
     event.preventDefault();
 

@@ -7,6 +7,7 @@
 <title>Contact & Support | Roasted Coffee</title>
 <script src="https://cdn.tailwindcss.com"></script>
   <script>tailwind.config = { theme: { extend: { colors: {ink: '#2b1e19', brown: '#704b38', muted: '#806957', accent: '#bc5b38', paper: '#f8f6f2', surface: '#faf9f6', sand: '#e7ded5', cream: '#faf8f5', 'coffee-art': '#eadfd3', hero: '#e9e5df', footer: '#f0ebe5', 'footer-ink': '#5f4b3f', 'footer-line': '#bcaea4', 'muted-ink': '#6b5147', 'pale-ink': '#d6c7bd', soft: '#cfc6bd', 'hero-ink': '#60391f', border: '#e5ddd6', 'border-dark': '#d8cec5', success: '#e5f0e6', 'success-text': '#356342'}, fontFamily: { body: ['DM Sans', 'Arial', 'sans-serif'] }, fontSize: { eyebrow: ['11px', { letterSpacing: '.15em' }], copy: '13px', micro: '10px', 'hero-mobile': '43px', 'hero-title': '58px', 'hero-copy': '17px', quote: '28px' }, maxWidth: { content: '1200px', hero: '620px', copy: '520px', auth: '480px' }, minHeight: { 'auth-content': '620px', 'hero-mobile': '760px', hero: '681px' }, spacing: { 'page-gutter': 'max(24px, calc((100vw - 1200px) / 2))', 'quote-gutter': 'max(24px, calc((100vw - 960px) / 2))', 'hero-inset': '8%', 'hero-card': '29rem', badge: '18px' }, boxShadow: { card: '0 15px 35px rgba(76, 49, 28, .1)' } } } };</script>
+  <script src="js/validation.js" defer></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -35,34 +36,40 @@
 </section>
 <main class="content-wrap mx-auto max-w-content px-5 py-16 md:px-8 md:py-20">
 <div class="split-layout grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12">
-<form class="form-card max-w-3xl border border-border bg-white p-5 md:p-8">
+<form id="feedbackForm" class="form-card mx-auto w-full max-w-copy border border-border bg-white p-5 md:p-8" data-custom-validation novalidate>
 <div class="eyebrow text-eyebrow font-bold uppercase text-accent">Send a message</div>
 <h2 class="my-4 text-3xl font-medium leading-tight tracking-tight md:text-4xl">How can we help?</h2>
-<div class="form-row grid grid-cols-1 gap-3.5 sm:grid-cols-2">
-<div class="field mb-4 flex flex-col gap-2">
-<label class="text-xs font-bold" for="support-name">Name</label>
-<input class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="support-name" name="name" autocomplete="name" required>
+<div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+<div class="field flex flex-col gap-2">
+<label class="text-xs font-bold" for="username">Name</label>
+<input class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition hover:border-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="username" name="name" type="text" autocomplete="name" aria-invalid="false" aria-describedby="nameError">
+<p id="nameError" class="hidden text-sm text-red-700" aria-live="polite"></p>
 </div>
-<div class="field mb-4 flex flex-col gap-2">
-<label class="text-xs font-bold" for="support-email">Email</label>
-<input class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="support-email" name="email" type="email" autocomplete="email" required>
+<div class="field flex flex-col gap-2">
+<label class="text-xs font-bold" for="email">Email</label>
+<input class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition hover:border-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="email" name="email" type="email" autocomplete="email" aria-invalid="false" aria-describedby="emailError">
+<p id="emailError" class="hidden text-sm text-red-700" aria-live="polite"></p>
 </div>
 </div>
-<div class="field mb-4 flex flex-col gap-2">
-<label class="text-xs font-bold" for="support-topic">Topic</label>
-<select class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="support-topic" name="topic">
-<option>Order and delivery</option>
-<option>Blend builder</option>
-<option>Subscription</option>
-<option>Something else</option>
-</select>
+<div class="field mt-4 flex flex-col gap-2">
+<label class="text-xs font-bold" for="phone">Phone</label>
+<input class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition hover:border-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+380501234567" aria-invalid="false" aria-describedby="phoneError phoneHint">
+<p id="phoneError" class="hidden text-sm text-red-700" aria-live="polite"></p>
+<p id="phoneHint" class="hidden text-sm text-brown" aria-live="polite"></p>
 </div>
-<div class="field mb-4 flex flex-col gap-2">
-<label class="text-xs font-bold" for="support-message">Message</label>
-<textarea class="w-full min-h-30 resize-y border border-border-dark bg-cream px-3 py-3 text-ink transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="support-message" name="message" required>
-</textarea>
+<div class="field mt-4 flex flex-col gap-2">
+<label class="text-xs font-bold" for="message">Message</label>
+<textarea class="min-h-28 w-full resize-y border border-border-dark bg-cream px-3 py-3 text-ink transition hover:border-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="message" name="message" aria-invalid="false" aria-describedby="messageError"></textarea>
+<p id="messageError" class="hidden text-sm text-red-700" aria-live="polite"></p>
 </div>
-<button class="button button-primary inline-flex min-h-11 items-center justify-center gap-2 rounded-sm border border-transparent px-5 py-3.5 text-sm font-bold transition hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 bg-accent text-white hover:brightness-95 cursor-pointer" type="submit">Send message -&gt;</button>
+<div class="field mt-4 flex flex-col gap-2">
+<div class="flex min-h-11 items-center gap-3">
+<input class="h-5 w-5 shrink-0 rounded border border-border-dark accent-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="agreement" name="agreement" type="checkbox" aria-invalid="false" aria-describedby="agreementError">
+<label class="text-sm leading-relaxed" for="agreement">I agree to be contacted about my message.</label>
+</div>
+<p id="agreementError" class="hidden text-sm text-red-700" aria-live="polite"></p>
+</div>
+<button id="feedbackSubmit" class="button button-primary mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-sm border border-transparent bg-accent px-5 py-3.5 text-sm font-bold text-white transition hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 md:w-auto" type="submit">Send message</button>
 </form>
 <div class="faq-list grid max-w-3xl gap-3">
 <details open class="border border-border bg-white p-4">
@@ -80,6 +87,13 @@
 </div>
 </div>
 </main>
+<div id="successOverlay" class="fixed inset-0 z-50 flex items-center justify-center bg-ink/60 p-4" role="dialog" aria-modal="true" aria-labelledby="successTitle" aria-describedby="successDescription" hidden>
+<div class="w-full max-w-copy border border-border bg-white p-6 shadow-card md:p-8">
+<h2 id="successTitle" class="text-2xl font-semibold">Message validated</h2>
+<p id="successDescription" class="mt-3 leading-relaxed text-brown">Form passed client-side validation. This is a demo of successful submission, and no data is sent to a server.</p>
+<button id="closeSuccess" class="mt-6 inline-flex min-h-11 w-full items-center justify-center rounded-sm bg-ink px-5 py-3 text-sm font-bold text-white transition hover:bg-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 md:w-auto" type="button">Close</button>
+</div>
+</div>
 <footer class="site-footer bg-footer px-5 pb-6 pt-14 md:px-8 lg:px-page-gutter">
 <div class="footer-bottom mt-12 flex flex-col justify-between gap-2.5 border-t border-border-dark pt-4 text-xs text-muted md:flex-row">
 <span>hello@roastedcoffee.com</span>

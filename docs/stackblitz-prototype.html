@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roasted Coffee | Lab 10 prototype</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css">
+  <style>
+    #reviews .swiper-pagination-bullet {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      margin: 0;
+      place-items: center;
+      border-radius: 9999px;
+      background: transparent;
+      opacity: 1;
+    }
+
+    #reviews .swiper-pagination-bullet::before {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: currentColor;
+      content: "";
+      opacity: .55;
+    }
+
+    #reviews .swiper-pagination-bullet-active::before {
+      background: #f59e0b;
+      opacity: 1;
+    }
+
+    #reviews .swiper-pagination-bullet:focus-visible {
+      outline: 2px solid #f59e0b;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body class="bg-stone-50 font-sans text-stone-900">
+  <main>
+    <section class="bg-amber-50 px-6 py-20">
+      <div class="mx-auto max-w-5xl">
+        <p class="mb-4 text-sm font-bold uppercase tracking-widest text-amber-900">Roasted Coffee</p>
+        <h1 class="text-4xl font-semibold md:text-6xl">Personalized Freshly Roasted Specialty Coffee</h1>
+        <p class="mt-5 min-h-8 text-xl font-medium text-amber-900"><span id="typed-text" aria-hidden="true">Freshly roasted to order</span><span class="sr-only">Freshly roasted to order. Specialty Coffee. Your coffee, your way.</span></p>
+      </div>
+    </section>
+
+    <section id="reviews" class="bg-stone-900 px-6 py-16 text-white">
+      <div class="mx-auto max-w-5xl">
+        <h2 class="mb-8 text-3xl font-semibold">Customer reviews</h2>
+        <div class="swiper reviews-swiper overflow-hidden" role="region" aria-label="Customer reviews">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide h-auto"><figure class="h-full rounded-xl bg-stone-800 p-6"><span class="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-amber-100 font-bold text-stone-900" aria-hidden="true">MR</span><div role="img" aria-label="5 out of 5 stars" class="text-amber-400">★★★★★</div><blockquote class="my-4 text-lg">It is rare to find coffee this fresh and this personal.</blockquote><figcaption class="font-semibold">Maya R.</figcaption></figure></div>
+            <div class="swiper-slide h-auto"><figure class="h-full rounded-xl bg-stone-800 p-6"><span class="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-amber-100 font-bold text-stone-900" aria-hidden="true">AL</span><div role="img" aria-label="5 out of 5 stars" class="text-amber-400">★★★★★</div><blockquote class="my-4 text-lg">The beans arrive fresh, and the roast makes my pour-over a pleasure.</blockquote><figcaption class="font-semibold">Avery L.</figcaption></figure></div>
+            <div class="swiper-slide h-auto"><figure class="h-full rounded-xl bg-stone-800 p-6"><span class="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-amber-100 font-bold text-stone-900" aria-hidden="true">JM</span><div role="img" aria-label="5 out of 5 stars" class="text-amber-400">★★★★★</div><blockquote class="my-4 text-lg">I enjoyed choosing a blend for the way I brew coffee at home.</blockquote><figcaption class="font-semibold">Jordan M.</figcaption></figure></div>
+            <div class="swiper-slide h-auto"><figure class="h-full rounded-xl bg-stone-800 p-6"><span class="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-amber-100 font-bold text-stone-900" aria-hidden="true">SK</span><div role="img" aria-label="5 out of 5 stars" class="text-amber-400">★★★★★</div><blockquote class="my-4 text-lg">The blend builder made it simple to pick beans and a roast I enjoy.</blockquote><figcaption class="font-semibold">Sam K.</figcaption></figure></div>
+            <div class="swiper-slide h-auto"><figure class="h-full rounded-xl bg-stone-800 p-6"><span class="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-amber-100 font-bold text-stone-900" aria-hidden="true">RC</span><div role="img" aria-label="5 out of 5 stars" class="text-amber-400">★★★★★</div><blockquote class="my-4 text-lg">My coffee arrived at my door, ready for a relaxed weekend brew.</blockquote><figcaption class="font-semibold">Riley C.</figcaption></figure></div>
+            <div class="swiper-slide h-auto"><figure class="h-full rounded-xl bg-stone-800 p-6"><span class="mb-4 flex h-11 w-11 items-center justify-center rounded-full bg-amber-100 font-bold text-stone-900" aria-hidden="true">TD</span><div role="img" aria-label="5 out of 5 stars" class="text-amber-400">★★★★★</div><blockquote class="my-4 text-lg">It was easy to find a coffee I liked and choose the grind for my brewer.</blockquote><figcaption class="font-semibold">Taylor D.</figcaption></figure></div>
+          </div>
+        </div>
+        <div class="mt-6 flex min-h-11 items-center justify-between gap-4">
+          <button class="swiper-button-prev !static !m-0 !h-11 !w-11 !shrink-0 rounded-full border border-white text-white after:!text-base" aria-label="Previous review" type="button"></button>
+          <div class="swiper-pagination !static !flex !w-auto flex-1 justify-center gap-2"></div>
+          <button class="swiper-button-next !static !m-0 !h-11 !w-11 !shrink-0 rounded-full border border-white text-white after:!text-base" aria-label="Next review" type="button"></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="px-6 py-16">
+      <div class="mx-auto max-w-5xl">
+        <h2 class="mb-8 text-3xl font-semibold">Coffee in focus</h2>
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <a class="group block overflow-hidden rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700" href="https://picsum.photos/seed/coffee-bags/1200/900" data-fancybox="coffee-gallery" data-caption="Coffee beans"><img class="aspect-[4/3] w-full rounded-xl object-cover transition duration-300 group-hover:scale-105" src="https://picsum.photos/seed/coffee-bags/1200/900" alt="Coffee gallery placeholder 1" loading="lazy" width="1200" height="900"></a>
+          <a class="group block overflow-hidden rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700" href="https://picsum.photos/seed/espresso-cup/1200/900" data-fancybox="coffee-gallery" data-caption="Coffee preparation"><img class="aspect-[4/3] w-full rounded-xl object-cover transition duration-300 group-hover:scale-105" src="https://picsum.photos/seed/espresso-cup/1200/900" alt="Coffee gallery placeholder 2" loading="lazy" width="1200" height="900"></a>
+          <a class="group block overflow-hidden rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700" href="https://picsum.photos/seed/coffee-interior/1200/900" data-fancybox="coffee-gallery" data-caption="A coffee shop"><img class="aspect-[4/3] w-full rounded-xl object-cover transition duration-300 group-hover:scale-105" src="https://picsum.photos/seed/coffee-interior/1200/900" alt="Coffee gallery placeholder 3" loading="lazy" width="1200" height="900"></a>
+          <a class="group block overflow-hidden rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700" href="https://picsum.photos/seed/pour-over/1200/900" data-fancybox="coffee-gallery" data-caption="Pour-over coffee"><img class="aspect-[4/3] w-full rounded-xl object-cover transition duration-300 group-hover:scale-105" src="https://picsum.photos/seed/pour-over/1200/900" alt="Coffee gallery placeholder 4" loading="lazy" width="1200" height="900"></a>
+          <a class="group block overflow-hidden rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700" href="https://picsum.photos/seed/roasted-beans/1200/900" data-fancybox="coffee-gallery" data-caption="Roasted coffee"><img class="aspect-[4/3] w-full rounded-xl object-cover transition duration-300 group-hover:scale-105" src="https://picsum.photos/seed/roasted-beans/1200/900" alt="Coffee gallery placeholder 5" loading="lazy" width="1200" height="900"></a>
+          <a class="group block overflow-hidden rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-700" href="https://picsum.photos/seed/roaster/1200/900" data-fancybox="coffee-gallery" data-caption="Coffee roasting"><img class="aspect-[4/3] w-full rounded-xl object-cover transition duration-300 group-hover:scale-105" src="https://picsum.photos/seed/roaster/1200/900" alt="Coffee gallery placeholder 6" loading="lazy" width="1200" height="900"></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const reviewsSection = document.querySelector('#reviews');
+      const reviewsSlider = reviewsSection?.querySelector('.reviews-swiper');
+      if (reviewsSlider && typeof Swiper !== 'undefined') {
+        new Swiper(reviewsSlider, {
+          slidesPerView: 1,
+          spaceBetween: 24,
+          loop: true,
+          autoplay: reducedMotion ? false : { delay: 3500, disableOnInteraction: false, pauseOnMouseEnter: true },
+          pagination: {
+            el: reviewsSection.querySelector('.swiper-pagination'),
+            clickable: true,
+            renderBullet: (index, className) => `<button class="${className}" type="button" aria-label="Go to review ${index + 1}"></button>`,
+          },
+          navigation: {
+            nextEl: reviewsSection.querySelector('.swiper-button-next'),
+            prevEl: reviewsSection.querySelector('.swiper-button-prev'),
+          },
+          breakpoints: { 320: { slidesPerView: 1 }, 768: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
+          keyboard: { enabled: true },
+          grabCursor: true,
+          a11y: {
+            enabled: true,
+            prevSlideMessage: 'Previous review',
+            nextSlideMessage: 'Next review',
+            paginationBulletMessage: 'Go to review {{index}}',
+          },
+        });
+      }
+      if (document.querySelector('[data-fancybox="coffee-gallery"]') && typeof Fancybox !== 'undefined') {
+        Fancybox.bind('[data-fancybox="coffee-gallery"]', {
+          Carousel: { transition: 'fade' },
+          Images: { zoom: true, Panzoom: { maxScale: 3 } },
+          Thumbs: { showOnStart: true },
+        });
+      }
+      const typedTarget = document.querySelector('#typed-text');
+      if (typedTarget && reducedMotion) {
+        typedTarget.textContent = 'Freshly roasted to order';
+      } else if (typedTarget && typeof Typed !== 'undefined') {
+        new Typed(typedTarget, {
+          strings: ['Freshly roasted to order', 'Specialty Coffee', 'Your coffee, your way.'],
+          typeSpeed: 50,
+          backSpeed: 30,
+          backDelay: 1500,
+          loop: true,
+        });
+      }
+    });
+  </script>
+</body>
+</html>

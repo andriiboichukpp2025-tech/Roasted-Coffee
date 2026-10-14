@@ -182,6 +182,73 @@
         </div>
       </section>
 
+      <section id="est-calculator" class="scroll-mt-4 bg-paper px-5 py-16 md:px-8 md:py-20 lg:px-page-gutter lg:py-24" aria-labelledby="est-heading">
+        <div class="mx-auto grid max-w-content grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12" data-est-widget>
+          <div>
+            <div class="eyebrow text-eyebrow font-bold uppercase text-brown">Order estimate</div>
+            <h2 id="est-heading" class="my-4 text-3xl font-medium leading-tight tracking-tight md:text-4xl">Calculate your coffee order.</h2>
+            <p class="max-w-xl leading-relaxed text-brown">Choose your coffee, bag size, quantity, and delivery to see an instant estimate.</p>
+
+            <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2" role="group" aria-labelledby="est-heading">
+              <div class="field flex flex-col gap-2">
+                <label class="text-xs font-bold" for="est-coffee">Coffee</label>
+                <select class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition hover:border-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="est-coffee" data-est-field="coffee" required aria-invalid="false" aria-describedby="est-coffee-error">
+                  <option value="ethiopian-bloom">Ethiopian Bloom</option>
+                  <option value="golden-hour">Golden Hour</option>
+                  <option value="sumatra-night">Sumatra Night</option>
+                </select>
+                <p class="hidden text-sm text-red-700" id="est-coffee-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field flex flex-col gap-2">
+                <label class="text-xs font-bold" for="est-weight">Bag size</label>
+                <select class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition hover:border-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="est-weight" data-est-field="weight" required aria-invalid="false" aria-describedby="est-weight-error">
+                  <option value="250g">250g</option>
+                  <option value="500g">500g</option>
+                  <option value="1kg">1kg</option>
+                </select>
+                <p class="hidden text-sm text-red-700" id="est-weight-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field flex flex-col gap-2">
+                <label class="text-xs font-bold" for="est-quantity">Number of bags</label>
+                <input class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition hover:border-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="est-quantity" data-est-field="quantity" type="number" min="1" max="20" step="1" required inputmode="numeric" value="1" aria-invalid="false" aria-describedby="est-quantity-error">
+                <p class="hidden text-sm text-red-700" id="est-quantity-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field flex flex-col gap-2">
+                <label class="text-xs font-bold" for="est-delivery">Delivery</label>
+                <select class="min-h-11 w-full border border-border-dark bg-cream px-3 py-3 text-ink transition hover:border-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="est-delivery" data-est-field="delivery" required aria-invalid="false" aria-describedby="est-delivery-error">
+                  <option value="standard">Standard - $4.00</option>
+                  <option value="express">Express - $9.00</option>
+                  <option value="pickup">Pickup - Free</option>
+                </select>
+                <p class="hidden text-sm text-red-700" id="est-delivery-error" aria-live="polite"></p>
+              </div>
+
+              <div class="field flex flex-col gap-2 sm:col-span-2">
+                <div class="flex min-h-11 items-center gap-3">
+                  <input class="h-5 w-5 shrink-0 rounded border border-border-dark accent-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" id="est-first-order" data-est-field="first-order" type="checkbox" aria-invalid="false" aria-describedby="est-first-order-error">
+                  <label class="text-sm leading-relaxed" for="est-first-order">This is my first order (10% off)</label>
+                </div>
+                <p class="hidden text-sm text-red-700" id="est-first-order-error" aria-live="polite"></p>
+              </div>
+            </div>
+          </div>
+
+          <aside class="h-max border border-border bg-white p-5 shadow-card md:p-7" aria-labelledby="est-result-heading" aria-live="polite">
+            <div class="eyebrow text-eyebrow font-bold uppercase text-accent">Estimated total</div>
+            <h3 id="est-result-heading" class="my-3 text-xl font-semibold">Your order</h3>
+            <dl class="divide-y divide-border border-y border-border">
+              <div class="flex justify-between gap-3 py-3"><dt>Coffee</dt><dd class="font-semibold" data-est-output="coffee">—</dd></div>
+              <div class="flex justify-between gap-3 py-3"><dt>Discount</dt><dd class="font-semibold" data-est-output="discount">—</dd></div>
+              <div class="flex justify-between gap-3 py-3"><dt>Delivery</dt><dd class="font-semibold" data-est-output="delivery">—</dd></div>
+            </dl>
+            <div class="mt-2 flex justify-between gap-3 border-t border-border pt-4 text-lg font-bold"><span>Total</span><span data-est-output="total">—</span></div>
+          </aside>
+        </div>
+      </section>
+
       <!-- Історія бренду та короткі кроки створення власної суміші. -->
       <section id="story" class="scroll-mt-4 bg-sand px-5 py-16 md:px-8 md:py-20 lg:px-page-gutter lg:py-24">
         <div class="mx-auto grid max-w-content grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center lg:gap-16">
@@ -440,5 +507,6 @@
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <script src="js/plugins.js"></script>
   <script src="js/script.js"></script>
+  <script src="js/widget.js"></script>
 </body>
 </html>

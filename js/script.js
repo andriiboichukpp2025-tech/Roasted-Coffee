@@ -17,7 +17,12 @@ const writeStorage = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
-const getCart = () => readStorage(storageKeys.cart);
+const getCart = () => {
+  const cart = readStorage(storageKeys.cart);
+  return Array.isArray(cart)
+    ? cart.filter((item) => item && typeof item === 'object' && !Array.isArray(item))
+    : [];
+};
 const getFavorites = () => readStorage(storageKeys.favorites);
 const getReviews = () => readStorage(storageKeys.reviews);
 
@@ -26,21 +31,20 @@ const setupWeatherWidget = async () => {
   if (!widget) return;
 
   const status = widget.querySelector('[data-weather-status]');
-  const latitude = Number(widget.dataset.latitude);
-  const longitude = Number(widget.dataset.longitude);
-  const location = widget.dataset.location;
-  if (!status || !Number.isFinite(latitude) || !Number.isFinite(longitude) || !location) {
-    throw new Error('Weather widget is missing valid location data or status element.');
-  }
-
-  const params = new URLSearchParams({
-    latitude: String(latitude),
-    longitude: String(longitude),
-    current: 'temperature_2m,weather_code',
-    temperature_unit: 'celsius',
-  });
-
   try {
+    const latitude = Number(widget.dataset.latitude);
+    const longitude = Number(widget.dataset.longitude);
+    const location = widget.dataset.location;
+    if (!status || !Number.isFinite(latitude) || !Number.isFinite(longitude) || !location) {
+      throw new Error('Weather widget is missing valid location data or status element.');
+    }
+
+    const params = new URLSearchParams({
+      latitude: String(latitude),
+      longitude: String(longitude),
+      current: 'temperature_2m,weather_code',
+      temperature_unit: 'celsius',
+    });
     const response = await fetch(`https://api.open-meteo.com/v1/forecast?${params}`);
     if (!response.ok) throw new Error(`Weather request failed with status ${response.status}.`);
 
@@ -78,7 +82,7 @@ const setupWeatherWidget = async () => {
     status.textContent = `${Math.round(temperature)}°C · ${conditions.get(weatherCode) || 'Current conditions'} in ${location}`;
   } catch (error) {
     console.error('Unable to load the weather widget.', error);
-    status.textContent = 'Weather is temporarily unavailable. Please try again later.';
+    if (status) status.textContent = 'Weather is temporarily unavailable. Please try again later.';
   }
 };
 
@@ -91,7 +95,13 @@ const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (character
 }[character]));
 
 const updateCartCount = () => {
-  const count = getCart().reduce((total, item) => total + (Number(item.quantity) || 0), 0);
+  const count = getCart().reduce((total, item) => {
+    const quantity = Number(item.quantity);
+    const nextCount = total + quantity;
+    return Number.isSafeInteger(quantity) && quantity >= 1 && Number.isSafeInteger(nextCount)
+      ? nextCount
+      : total;
+  }, 0);
   document.querySelectorAll('.cart-count').forEach((badge) => {
     badge.textContent = count;
   });
@@ -233,17 +243,27 @@ const renderCart = () => {
 
   if (!cart.length) {
     if (emptyState) emptyState.hidden = false;
+    if (checkoutButton) checkoutButton.disabled = false;
     checkoutButton?.setAttribute('aria-disabled', 'true');
     checkoutButton?.classList.add('is-disabled');
     updateCheckoutTotals(0);
     return;
   }
 
-  emptyState.hidden = true;
-  checkoutButton?.removeAttribute('aria-disabled');
-  checkoutButton?.classList.remove('is-disabled');
+  if (emptyState) emptyState.hidden = true;
 
+  let hasInvalidItem = false;
   cart.forEach((item) => {
+    const storedQuantity = Number(item.quantity);
+    const validQuantity = Number.isSafeInteger(storedQuantity) && storedQuantity >= 1;
+    const quantity = validQuantity ? storedQuantity : 1;
+    const price = Number(item.price);
+    const validPrice = Number.isFinite(price) && price >= 0 && Number.isSafeInteger(Math.round(price * 100));
+    const lineTotal = validPrice && validQuantity ? price * quantity : null;
+    const validLineTotal = lineTotal !== null
+      && Number.isFinite(lineTotal)
+      && Number.isSafeInteger(Math.round(lineTotal * 100));
+    if (!validLineTotal) hasInvalidItem = true;
     const row = document.createElement('div');
     row.className = 'cart-item grid grid-cols-[58px_minmax(0,1fr)] items-center gap-4 border-b border-border py-4 sm:grid-cols-[72px_minmax(0,1fr)_85px_auto]';
     row.innerHTML = `
@@ -254,25 +274,62 @@ const renderCart = () => {
         <button class="text-button min-h-11 px-2 text-xs text-accent transition hover:text-brown focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" type="button" data-remove-item="${escapeHtml(item.id)}">Remove</button>
       </div>
       <label class="quantity-control col-start-2 text-xs text-muted sm:col-auto">Qty
-        <input class="min-h-11 w-16 border border-border-dark px-2 py-1 text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" type="number" min="1" value="${Math.max(1, Number(item.quantity) || 1)}" data-quantity-item="${escapeHtml(item.id)}">
+        <input class="min-h-11 w-16 border border-border-dark px-2 py-1 text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" type="number" min="1" step="1" required inputmode="numeric" value="${quantity}" data-quantity-item="${escapeHtml(item.id)}">
       </label>
-      <strong class="col-start-2 break-all sm:col-auto">$${((Number(item.price) || 0) * Math.max(1, Number(item.quantity) || 1)).toFixed(2)}</strong>`;
+      <strong class="col-start-2 break-all sm:col-auto">${validLineTotal ? `$${lineTotal.toFixed(2)}` : 'Unavailable'}</strong>`;
     list.appendChild(row);
   });
 
-  updateCheckoutTotals(cart.reduce((total, item) => total + item.price * item.quantity, 0));
+  const subtotal = getCartSubtotal(cart);
+  if (subtotal === null) {
+    hasInvalidItem = true;
+    const warning = document.createElement('p');
+    warning.className = 'mt-3 border border-border bg-sand p-3 text-sm text-brown';
+    warning.setAttribute('role', 'status');
+    warning.setAttribute('aria-live', 'polite');
+    warning.textContent = 'Some saved cart details are invalid. Remove the affected item and add it again before checkout.';
+    list.appendChild(warning);
+  }
+  if (checkoutButton) {
+    checkoutButton.disabled = hasInvalidItem;
+    if (hasInvalidItem) {
+      checkoutButton.setAttribute('aria-disabled', 'true');
+      checkoutButton.classList.add('is-disabled');
+    } else {
+      checkoutButton.removeAttribute('aria-disabled');
+      checkoutButton.classList.remove('is-disabled');
+    }
+  }
+  updateCheckoutTotals(subtotal);
 };
 
+const getCartSubtotal = (cart) => cart.reduce((total, item) => {
+  if (total === null) return null;
+  const price = Number(item.price);
+  const quantity = Number(item.quantity);
+  const lineTotal = price * quantity;
+  const subtotal = total + lineTotal;
+  return Number.isFinite(price) && price >= 0
+    && Number.isSafeInteger(Math.round(price * 100))
+    && Number.isSafeInteger(quantity) && quantity >= 1
+    && Number.isFinite(lineTotal) && lineTotal >= 0 && Number.isSafeInteger(Math.round(lineTotal * 100))
+    && Number.isFinite(subtotal) && subtotal >= 0 && Number.isSafeInteger(Math.round(subtotal * 100))
+    ? subtotal
+    : null;
+}, 0);
+
 const updateCheckoutTotals = (subtotal) => {
-  const delivery = Number(document.querySelector('[name="delivery"]:checked')?.value || 4);
+  const requestedDelivery = Number(document.querySelector('[name="delivery"]:checked')?.value || 4);
+  const delivery = [0, 4, 9].includes(requestedDelivery) ? requestedDelivery : 4;
+  const validSubtotal = Number.isFinite(subtotal) && subtotal >= 0 && Number.isSafeInteger(Math.round(subtotal * 100));
   const deliveryLabel = document.querySelector('[data-delivery-label]');
   const subtotalElement = document.querySelector('[data-subtotal]');
   const deliveryElement = document.querySelector('[data-delivery-price]');
   const totalElement = document.querySelector('[data-total]');
 
-  if (subtotalElement) subtotalElement.textContent = `$${subtotal.toFixed(2)}`;
+  if (subtotalElement) subtotalElement.textContent = validSubtotal ? `$${subtotal.toFixed(2)}` : 'Unavailable';
   if (deliveryElement) deliveryElement.textContent = delivery === 0 ? 'Free' : `$${delivery.toFixed(2)}`;
-  if (totalElement) totalElement.textContent = `$${(subtotal + delivery).toFixed(2)}`;
+  if (totalElement) totalElement.textContent = validSubtotal ? `$${(subtotal + delivery).toFixed(2)}` : 'Unavailable';
   if (deliveryLabel) {
     deliveryLabel.textContent = delivery === 0 ? 'Pickup - free' : delivery === 9 ? 'Express delivery' : 'Standard delivery';
   }
@@ -401,6 +458,14 @@ const setupCheckout = () => {
       }
       return;
     }
+    if (getCartSubtotal(getCart()) === null) {
+      if (message) {
+        message.textContent = 'Some saved cart details are invalid. Remove the affected item and add it again before checkout.';
+        message.hidden = false;
+        message.focus();
+      }
+      return;
+    }
     window.location.assign(form.action);
   });
 
@@ -450,12 +515,13 @@ document.querySelectorAll('[data-add-cart]').forEach((button) => {
     const grind = document.querySelector('[name="grind"]');
     const weightLabel = weight?.selectedOptions[0]?.textContent.split(' - ')[0];
     const price = weight?.selectedOptions[0]?.textContent.match(/\$(\d+(?:\.\d{2})?)/)?.[1];
-    const baseMeta = button.dataset.meta.split(' · ').slice(0, 2).join(' · ');
+    const meta = String(button.dataset.meta || '');
+    const baseMeta = meta.split(' · ').slice(0, 2).join(' · ');
     addToCart({
       id: button.dataset.addCart,
       name: button.dataset.name,
       price: Number(price || button.dataset.price),
-      meta: weightLabel && grind ? `${baseMeta} · ${grind.value} · ${weightLabel}` : button.dataset.meta,
+      meta: weightLabel && grind && baseMeta ? `${baseMeta} · ${grind.value} · ${weightLabel}` : meta,
       art: button.dataset.art,
     });
     button.textContent = 'Added ✓';
@@ -475,14 +541,22 @@ document.addEventListener('change', (event) => {
   if (!quantityInput) return;
   const cart = getCart();
   const item = cart.find((cartItem) => cartItem.id === quantityInput.dataset.quantityItem);
-  if (item) item.quantity = Math.max(1, Number(quantityInput.value));
+  if (item) {
+    const requestedQuantity = Number(quantityInput.value);
+    const storedQuantity = Number(item.quantity);
+    if (Number.isSafeInteger(requestedQuantity) && requestedQuantity >= 1) {
+      item.quantity = requestedQuantity;
+    } else {
+      quantityInput.value = String(Number.isSafeInteger(storedQuantity) && storedQuantity >= 1 ? storedQuantity : 1);
+    }
+  }
   writeStorage(storageKeys.cart, cart);
   renderCart();
   updateCartCount();
 });
 
 document.querySelectorAll('[name="delivery"]').forEach((radio) => {
-  radio.addEventListener('change', () => updateCheckoutTotals(getCart().reduce((total, item) => total + item.price * item.quantity, 0)));
+  radio.addEventListener('change', () => updateCheckoutTotals(getCartSubtotal(getCart())));
 });
 
 document.querySelector('[name="delivery"]')?.closest('form')?.addEventListener('change', (event) => {

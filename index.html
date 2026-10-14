@@ -39,6 +39,10 @@
       outline: 2px solid var(--color-accent);
       outline-offset: 2px;
     }
+
+    #reviews .reviews-nav-button::after {
+      content: none;
+    }
   </style>
   <!-- Tailwind-токени цієї сторінки узгоджені зі спільною дизайн-системою проєкту. -->
   <script>tailwind.config = { theme: { extend: { colors: {ink: '#2b1e19', brown: '#704b38', muted: '#806957', accent: '#bc5b38', paper: '#f8f6f2', surface: '#faf9f6', sand: '#e7ded5', cream: '#faf8f5', 'coffee-art': '#eadfd3', hero: '#e9e5df', footer: '#f0ebe5', 'footer-ink': '#5f4b3f', 'footer-line': '#bcaea4', 'muted-ink': '#6b5147', 'pale-ink': '#d6c7bd', soft: '#cfc6bd', 'hero-ink': '#60391f', border: '#e5ddd6', 'border-dark': '#d8cec5', success: '#e5f0e6', 'success-text': '#356342'}, fontFamily: { body: ['DM Sans', 'Arial', 'sans-serif'] }, fontSize: { eyebrow: ['11px', { letterSpacing: '.15em' }], copy: '13px', micro: '10px', 'hero-mobile': '43px', 'hero-title': '58px', 'hero-copy': '17px', quote: '28px' }, maxWidth: { content: '1200px', hero: '620px', copy: '520px', auth: '480px' }, minHeight: { 'auth-content': '620px', 'hero-mobile': '760px', hero: '681px' }, spacing: { 'page-gutter': 'max(24px, calc((100vw - 1200px) / 2))', 'quote-gutter': 'max(24px, calc((100vw - 960px) / 2))', 'hero-inset': '8%', 'hero-card': '29rem', badge: '18px' }, boxShadow: { card: '0 15px 35px rgba(76, 49, 28, .1)' } } } };</script>
@@ -272,9 +276,13 @@
               </div>
             </div>
             <div class="mt-5 flex min-h-11 items-center justify-between gap-4">
-              <button class="swiper-button-prev !static !m-0 !h-11 !w-11 !shrink-0 rounded-full border border-pale-ink text-white after:!text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" type="button" aria-label="Previous review"></button>
+              <button class="reviews-nav-button swiper-button-prev !static !m-0 !h-11 !w-11 !shrink-0 rounded-full border border-pale-ink text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" type="button" aria-label="Previous review">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m15 18-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </button>
               <div class="swiper-pagination !static !flex !w-auto flex-1 justify-center gap-2"></div>
-              <button class="swiper-button-next !static !m-0 !h-11 !w-11 !shrink-0 rounded-full border border-pale-ink text-white after:!text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" type="button" aria-label="Next review"></button>
+              <button class="reviews-nav-button swiper-button-next !static !m-0 !h-11 !w-11 !shrink-0 rounded-full border border-pale-ink text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent" type="button" aria-label="Next review">
+                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+              </button>
             </div>
           </div>
           <dl class="mt-8 grid grid-cols-2 gap-4 border-t border-muted-ink pt-6 md:grid-cols-4">

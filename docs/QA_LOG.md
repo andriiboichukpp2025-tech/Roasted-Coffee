@@ -77,3 +77,18 @@ No uncaught JavaScript errors were observed in the browser. Existing environment
 ## Step 8 — console self-test
 
 `docs/widget-selftest.js` is not included in the site HTML. It reports PASS/FAIL rows for the input edge cases, a modified select, the first-order discount, rapid changes, missing DOM, and two instances. The browser run produced 13 PASS rows; the intentional incomplete-DOM case emits one warning by design.
+
+## Lab 12 — order calculator accessibility and mobile QA
+
+Tested the existing calculator on the local site at a 390 px viewport. The existing `docs/widget-selftest.js` returned 13/13 PASS cases. The widget logic and `js/validation.js` were not changed; the first-order checkbox label was enlarged to a 48 px minimum hit area without increasing the row height.
+
+| Test Case | Expected Result | Actual Risk | Recommendation |
+|---|---|---|---|
+| Tab and Shift+Tab through calculator fields | Focus follows DOM order and can move backward without trapping | No keyboard trap observed; tested select-to-select traversal | Retain native controls and repeat with a screen reader before release |
+| Visible keyboard focus | Focused field displays the accent focus indicator | `:focus-visible` matched and the Tailwind ring resolved to the accessible accent token | Visually confirm in the target browser and retain the focus utility classes |
+| Labels and error descriptions | Every field has a label and an error target referenced by `aria-describedby` | All five calculator fields resolved to their matching error element; error messages use polite live regions | Keep error IDs unique if more widget instances are added |
+| Invalid quantity | Invalid value sets `aria-invalid`, announces a specific error, and clears calculated totals | `0` produced “Enter a quantity from 1 to 20.” and cleared the total | Keep field-level validation and avoid displaying stale totals |
+| Valid quantity and totals | Valid value updates the estimate immediately | Quantity `2` produced a `$48.00` total; initial state was `$26.00` | Recheck currency and shipping assumptions if business rules change |
+| Input edge cases and instance isolation | Reject invalid/tampered values and keep multiple instances independent | Existing browser self-test passed all 13 cases, including tampered coffee, extreme quantities, XSS-shaped text, missing DOM, and two instances | Continue running `docs/widget-selftest.js` after widget changes |
+| Mobile touch and layout | Controls remain usable at 390 px with no horizontal overflow | Selects and quantity input measured at least 48 px high; checkbox label measured 193×48 px; document did not overflow the viewport | Manually verify on a physical touch device |
+| Assistive-technology announcement | Names, errors, and changing totals are announced coherently | DOM label/ARIA wiring was verified; a screen reader was not available in this run | Perform a manual NVDA or VoiceOver pass before release |

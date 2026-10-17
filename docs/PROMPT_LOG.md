@@ -194,3 +194,11 @@
 - **Відповідь ШІ:** Задокументовано обмеження Tailwind CDN, відео, JPEG-конвертації, сторонніх ресурсів і відсутність післязмінного Lighthouse-звіту. Також зазначено потребу в ручному тесті скрінрідером/на пристрої та перевірці production sitemap/robots після розгортання.
 - **Що змінено:** Додано таблицю самоаудиту й список невиконаного до `docs/QA_LOG.md`.
 - **Результат:** Залишкова робота й рекомендації описані прозоро; post-change Lighthouse scores не заявляються.
+
+## Lab 12 — CI/CD
+
+- **Завдання:** Додати GitHub Actions production workflow для перевірки JavaScript і deploy до Vercel, не записуючи секрети в репозиторій.
+- **Промпт:** Запускати на push у `main` або вручну; серіалізувати production deploy, використовувати Node 20, Vercel CLI та три GitHub secrets; підготувати україномовне налаштування.
+- **Відповідь ШІ:** Додано окремі check і deploy jobs із залежністю deploy від успішної перевірки, job-level Vercel secrets і спільною concurrency group. Підготовлено інструкцію зі створення secrets, запобіганням подвійному deploy, злиттям, моніторингом та rollback.
+- **Що змінено:** `.github/workflows/deploy.yml`, `.gitignore`, `docs/CICD_SETUP.md`, цей розділ у `docs/PROMPT_LOG.md`.
+- **Результат:** YAML синтаксично перевірено PyYAML-ом; файли готові до локального коміту, але push і production deploy не виконувалися.

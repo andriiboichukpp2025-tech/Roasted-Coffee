@@ -3,13 +3,37 @@
 :root {
   --color-ink: #2b1e19;
   --color-brown: #704b38;
-  --color-accent: #bc5b38;
+  --color-accent: #9d4026;
   --color-surface: #faf9f6;
   --color-sand: #e7ded5;
 }
 
 html { scroll-behavior: smooth; }
 [hidden] { display: none !important; }
+
+.site-header a,
+.site-footer nav a,
+.price-line a,
+.arrow-link {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+}
+
+.main-nav a {
+  display: inline-flex;
+  min-width: 48px;
+  min-height: 48px;
+  justify-content: center;
+  align-items: center;
+}
+
+.site-shell a[href]:not(.group):not(.hidden) {
+  display: inline-flex;
+  min-width: 48px;
+  min-height: 48px;
+  align-items: center;
+}
 
 .main-nav a.active,
 .main-nav a:hover { color: var(--color-accent); }
